@@ -25,9 +25,6 @@ $(document).ready(function () {
         }
         console.log(data)
       },
-      error: function (xhr, status, error) {
-        console.error("Error en la solicitud AJAX:", xhr.status, xhr.responseText, error);
-      }
     })
   })
   
@@ -51,10 +48,6 @@ $(document).ready(function () {
               alert('No se encontraron registros.');
           }
       },
-      error: function (jqXHR, textStatus, errorThrown) {
-          console.error("Error en la petición AJAX: ", textStatus, errorThrown);
-          console.log("Detalles del error: ", jqXHR.responseText);
-      }
   });
 });
   // traer materias
@@ -87,107 +80,31 @@ $(document).ready(function () {
   });
   
 
-  // function GuardarASD() {
-  //   var contador = 0;
-  //   var periodo;
+  //grupos
+  $(document).ready(function () {
+    const accion = 'Buscar_Grupo'; 
+    var datos = { accion: accion };
   
-  //   $("#btnGuardarM").on("click", function (e) {
-  //     contador++;
-      
-  
-  //     periodo = $("#selectPeriodo option:selected").text().trim();
-  //     var materia = $("#selectMateria option:selected").text().trim();
-  //     var docente = $("#selectDocente option:selected").text().trim();
-  //     var semestre = $('#SemestreS').val().trim();
-  //     var grupo = $('#selectGrupo').val().trim();
-  
-  
-  
-  //       var dataToSend = new FormData();
-  //       dataToSend.append('nombrePeriodo', periodo);
-  //       dataToSend.append('nombreD', docente);
-  //       dataToSend.append('nombre_mat', materia);
-  //       dataToSend.append('semestreM', semestre);
-  //       dataToSend.append('Grupo', grupo);
-  //       dataToSend.append('accion', 'insertar_asignacion_DOCENTE');
-  
-     
-  //       })
-  
-  //       if (periodo == "") { //116
-  //         Swal.fire({
-  //           title: "Todos los campos son obligatorios",
-  //           text: "Ingrese una materia",
-  //           icon: "warning",
-  //           showCancelButton: true,
-  //         });
-  //         return false;
-  //       } else {
-  //         Swal.fire({
-  //           title: "¡Atención!",
-  //           text: "¿Desea registrar los datos?",
-  //           icon: "info",
-  //           showCancelButton: true,
-  //           showConfirmButton: true,
-  //           dangerMode: true,
-  //         }).then((willDelete) => {
-  //           if (willDelete.isConfirmed) {
-  //             $.ajax({
-  //               url: 'controller/rutas.php',
-  //               type: "POST",
-  //               data: dataToSend,
-  //               processData: false,
-  //               contentType: false,
-  //               beforeSend: function () {
-  //                 Swal.fire({
-  //                   title: "Enviando datos...",
-  //                   text: "Por favor, espere.",
-  //                   showConfirmButton: false,
-  //                   allowOutsideClick: false,
-  //                 });
-  //               },
-  //               success: function (respuesta) {
-  //                 console.log('Respuesta del servidor:', respuesta);
-  //                 if (respuesta.includes("Error")) {
-  //                   Swal.fire({
-  //                     title: "Error",
-  //                     text: respuesta,
-  //                     icon: "error",
-  //                     showCancelButton: true,
-  //                   })
-  //                 } else if (respuesta !== "") {
-  //                   Swal.fire({
-  //                     title: 'Correcto',
-  //                     text: 'Datos Registrados Correctamente',
-  //                     icon: 'success',
-  //                     showConfirmButton: true,
-  //                   }).then((result) => {
-  //                     if (result.isConfirmed) {
-  //                       location.reload();
-  //                     }
-  //                   });
-  //                 }
-  //               },
-  //               error: function (error) {
-  //                 Swal.fire({
-  //                   title: "Error",
-  //                   text: "Ocurrió un error al enviar los datos.",
-  //                   icon: "error",
-  //                   showCancelButton: true,
-  //                 });
-  //               },
-  //               complete: function () {
-  //                 contador = 0;
-  //               }
-  //             });
-  //           }
-  //         });
-  //       }
-  //     };
-  
-     
- 
-
+    $.ajax({
+        url: 'controller/rutas.php',
+        type: 'POST',
+        data: datos,
+        dataType: 'json', // Especifica que esperamos una respuesta en formato JSON
+        success: function (responseData) {
+            if (responseData.length > 0) {
+                for (var i = 0; i < responseData.length; i++) {
+                    $('#selectGrupo').append(`<option value="${responseData[i].id_grupo}">${responseData[i].Grupo}</option>`);
+                }
+            } else {
+                alert('No se encontraron grupos.');
+            }
+            console.log(responseData);
+        },
+        error: function (status) {
+            console.log(status);
+        }
+    });
+});
 
 
 
@@ -221,45 +138,55 @@ $(document).ready(function () {
                 data.append('accion', accion);
           
                 $.ajax({
-                    type: 'POST',
-                    url: 'controller/rutas.php',
-                    data: data,
-                    contentType: false,
-                    processData: false,
-                    success: function (response) {
-                      console.log(response)
-                      // if (response.includes('duplicada')) {
-                      //   // Mensaje de error
-                      //   Swal.fire({
-                      //     title: '¡Error!',
-                      //     text: response,
-                      //     icon: 'error',
-                      //     showCloseButton: true,
-                      //     timer: 5000 // Duración de 5 segundos
-                      //   });
-                      // } else {
-                      //   // Mensaje de éxito
-                      //   Swal.fire({
-                      //     title: '¡Éxito!',
-                      //     text: response,
-                      //     icon: 'success',
-                      //     showCloseButton: true,
-                      //     timer: 5000 // Duración de 5 segundos
-                      //   }).then(() => {
-                      //     location.reload(); // Recargar la página después de mostrar el mensaje de éxito
-                      //   });
-                      // }
-                    },
-                    error: function () {
+                  type: 'POST',
+                  url: 'controller/rutas.php',
+                  data: data,
+                  contentType: false,
+                  processData: false,
+                  success: function (response) {
+                      var jsonResponse = JSON.parse(response);
+
+                      if (jsonResponse.status === 'duplicate_entry') {
+                          // Mensaje de error por duplicado
+                          Swal.fire({
+                              title: '¡Error!',
+                              text: jsonResponse.message,
+                              icon: 'error',
+                              showCloseButton: true,
+                          });
+                      } else if (jsonResponse.status === 'success') {
+                          // Mensaje de éxito
+                          Swal.fire({
+                              title: '¡Éxito!',
+                              text: jsonResponse.message,
+                              icon: 'success',
+                              showCloseButton: true,
+                              timer: 5000 // Duración de 5 segundos
+                          }).then(() => {
+                              location.reload(); // Recargar la página después de mostrar el mensaje de éxito
+                          });
+                      } else {
+                          // Mensaje de error general
+                          Swal.fire({
+                              title: '¡Error!',
+                              text: 'Se produjo un error al realizar la solicitud.',
+                              icon: 'error',
+                              showCloseButton: true,
+                              timer: 5000 // Duración de 5 segundos
+                          });
+                      }
+                  },
+                  error: function () {
+                      // Mensaje de error general en caso de error de la solicitud AJAX
                       Swal.fire({
-                        title: '¡Error!',
-                        text: 'Se produjo un error al realizar la solicitud.',
-                        icon: 'error',
-                        showCloseButton: true,
-                        timer: 5000 // Duración de 5 segundos
+                          title: '¡Error!',
+                          text: 'Se produjo un error al realizar la solicitud.',
+                          icon: 'error',
+                          showCloseButton: true,
+                          timer: 5000 // Duración de 5 segundos
                       });
-                    },
-                });
+                  },
+              });
             } else {
                 Swal.fire({
                     title: 'Información',

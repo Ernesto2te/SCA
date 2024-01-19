@@ -44,11 +44,15 @@ class CargaMasivaCali
         $x = new ModeloAsigC();
         return $x->buscarDocente();
     }
-
-    function BuscarDocenteDC() {
+    function BuscarGrupo() {
         $x = new ModeloAsigC();
-        return $x->buscarDocenteDC();
+        return $x->buscargrupo();
     }
+
+    // function BuscarDocenteDC() {
+    //     $x = new ModeloAsigC();
+    //     return $x->buscarDocenteDC();
+    // }
 
 
     function BuscarPeri()
@@ -93,6 +97,7 @@ class CargaMasivaCali
         // Continuar con la ejecución normal de la función
         $alm = $this->GUardarAsignacion->guardarMATDOCCClass($Nombre_Periodo, $docente, $materia, $grupo);
         echo ($alm);
+        
     }
     
     

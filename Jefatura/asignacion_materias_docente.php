@@ -77,15 +77,7 @@ include '../includes/Jefatura.php';
                                                 <select class="form-select form-control-lg custom-select"
                                                     id="selectGrupo">
                                                     <option value="" disabled selected>Seleccione un Grupo...</option>
-                                                    <option>1A</option>
-                                                    <option>1B</option>
-                                                    <option>1C</option>
-                                                    <option>2A</option>
-                                                    <option>2B</option>
-                                                    <option>2C</option>
-                                                    <option>3A</option>
-                                                    <option>3B</option>
-                                                    <option>3C</option>
+                                    
                                                 </select>
                                             </div>
                                         </div>

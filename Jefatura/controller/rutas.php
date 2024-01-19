@@ -519,8 +519,13 @@ case 'Buscar_PeriodoD':
             break;
 
 
+            case 'Buscar_Grupo': // Cambia el nombre de la acción
+                $obj_materiaa = new CargaMasivaCali();
+                $res = $obj_materiaa->BuscarGrupo(); // No necesitas pasar $nombre_DA
+                echo $res;
+                break;
         case 'insertar_asignacion_DOCENTE':
-    
+            $obj_materiaa = new CargaMasivaCali();
                 $res = $obj_materiaa->guardarMATDOCClass($Nombre_Periodo, $docente, $materia, $grupo);
                 echo ($res);
                 break;
@@ -534,11 +539,11 @@ case 'Buscar_PeriodoD':
         echo json_encode($docentes);
         break;
 
-        case 'buscar_docenteDC':
-            $obj_materiaa = new CargaMasivaCali();
-            $docentes = $obj_materiaa->BuscarDocenteDC();
-            echo json_encode($docentes);
-            break;
+        // case 'buscar_docenteDC':
+        //     $obj_materiaa = new CargaMasivaCali();
+        //     $docentes = $obj_materiaa->BuscarDocenteDC();
+        //     echo json_encode($docentes);
+        //     break;
     
 
         case 'Buscar_PeriodoDC':

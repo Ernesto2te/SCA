@@ -73,7 +73,18 @@ class  ModeloAsigC extends conexion {
     }
     return ($x);
   }
+  function buscargrupo()
+  {
+    $sql = "SELECT * FROM grupos ";
+    $pdo = parent::Conectar();
+    $query = $pdo->prepare($sql);
+    $query->execute();
 
+    while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+      $x[] = $row;
+    }
+    return (json_encode($x) );
+  }
   function buscarDocente() {
     $sql = "SELECT DISTINCT m.Id_Maestro, CONCAT(m.NombreMa, ' ', m.a_paternoJM,  ' ', m.a_maternoJM) AS NombreCompleto 
             FROM maestros m
@@ -188,69 +199,47 @@ class  ModeloAsigC extends conexion {
 
 
   function guardarMATDOCCClass($Nombre_Periodo, $docente, $materia, $grupo)
-  {
-      try {
-          $pdo = parent::Conectar();
-          $pdo->beginTransaction();
+{
+    try {
+        $pdo = parent::Conectar();
+        $pdo->beginTransaction();
 
-        //   // Obtener el ID del alumno
-          $query_alumno = "SELECT id_grupo FROM grupos WHERE Grupo = ?";
-          $stmt_alumno = $pdo->prepare($query_alumno);
-          $stmt_alumno->execute([$grupo]);
-          $id_grupo = $stmt_alumno->fetchColumn();
+        // Obtener el ID del período
+        $query_periodo = "SELECT id_periodo FROM periodo WHERE nombrePeriodo = ?";
+        $stmt_periodo = $pdo->prepare($query_periodo);
+        $stmt_periodo->execute([$Nombre_Periodo]);
+        $id_periodo = $stmt_periodo->fetchColumn();
 
-          if (!$id_grupo) {
-              $error_message = "Error: No se encontró el grupo en la base de datos.";
-              error_log($error_message);
-              return $error_message;
-          }
+      
 
-          // Obtener el ID del período
-          $query_periodo = "SELECT id_periodo FROM periodo WHERE nombrePeriodo = ?";
-          $stmt_periodo = $pdo->prepare($query_periodo);
-          $stmt_periodo->execute([$Nombre_Periodo]);
-          $id_periodo = $stmt_periodo->fetchColumn();
+        // Verificar si ya existe el registro
+        $query_existencia = "SELECT id_materiaImpartida FROM materias_impartidas WHERE id_periodo = ? AND id_materia = ? AND Id_Maestro = ? AND id_grupo = ?";
+        $stmt_existencia = $pdo->prepare($query_existencia);
+        $stmt_existencia->execute([$id_periodo, $materia, $docente, $grupo]);
+        $existe_registro = $stmt_existencia->fetchColumn();
 
-          if (!$id_periodo) {
-              return "Error: No se encontró el período en la base de datos.";
-          }
+        if ($existe_registro > 0) {
+            // Si ya existe, no insertar y devolver mensaje de duplicado
+            $pdo->rollBack();
+            return json_encode(array("status" => "duplicate_entry", "message" => "El registro ya existe en la base de datos."));
+        }
 
-         
+        // Insertar datos en materias_impartidas
+        $sql = "INSERT INTO materias_impartidas (id_periodo, id_materia, Id_Maestro, id_grupo) VALUES (?, ?, ?, ?)";
+        $query = $pdo->prepare($sql);
+        $result = $query->execute([$id_periodo, $materia, $docente, $grupo]);
 
-          // Obtener el ID de la materia
-          $query_mat = "SELECT id_materia FROM materias WHERE NombreMat = ?";
-          $stmt_mat = $pdo->prepare($query_mat);
-          $stmt_mat->execute([$materia]);
-          $id_materia = $stmt_mat->fetchColumn();
-
-          if (!$id_materia) {
-              return "Error: No se encontró la materia en la base de datos.";
-          }
-
-          // Obtener el ID del docente
-          $query_docente = "SELECT Id_Maestro FROM maestros WHERE CONCAT(NombreMa, ' ', a_paternoJM, ' ', a_maternoJM) = ?";
-          $stmt_docente = $pdo->prepare($query_docente);
-          $stmt_docente->execute([$docente]);
-          $id_docente = $stmt_docente->fetchColumn();
-
-          if (!$id_docente) {
-              return "Error: No se encontró el docente en la base de datos.";
-          }
-
-         
-          // Insertar la calificación
-          $sql = "INSERT INTO materias_impartidas (id_periodo, id_materia, Id_Maestro,  id_grupo) VALUES (?, ?, ?, ?)";
-          $query = $pdo->prepare($sql);
-          $query->execute([$id_periodo, $id_materia, $id_docente, $id_grupo ]);
-          $id_calificacion = $pdo->lastInsertId();
-
-          $pdo->commit();
-          echo json_encode(array("status" => "success", "message" => "Los datos se cargaron correctamente"));
-      } catch (Exception $e) {
-          $pdo->rollBack();
-          echo "Error: " . $e->getMessage();
-      }
-  }
+        if ($result) {
+            $pdo->commit();
+            return json_encode(array("status" => "success", "message" => "Los datos se cargaron correctamente"));
+        } else {
+            throw new Exception("Error en la ejecución de la consulta: " . implode(', ', $query->errorInfo()));
+        }
+    } catch (Exception $e) {
+        $pdo->rollBack();
+        return json_encode(array("status" => "error", "message" => "Error: " . $e->getMessage()));
+    }
+}
 
 
 }
