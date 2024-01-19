@@ -1,0 +1,68 @@
+.page-body {
+  background-image: linear-gradient(135deg, #e6e9f0 0%, #dfe7f5 100%);
+}
+
+.card {
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.8);
+  /* box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2), -5px -5px 15px rgba(255, 255, 255, 0.5); */
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  backdrop-filter: blur(15px);
+}
+
+.text-center h1 {
+  color: #333366;
+}
+
+.menu-option img {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.menu-option img:hover {
+  transform: scale(1.1);
+}
+
+.menu-option-content {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.menu-option a {
+  /* background-color: #007bff; */
+  color: rgb(64, 204, 134);
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.menu-option a:hover {
+  /* background-color: #0056b3; */
+  transform: translateY(-2px);
+}
+
+/* Media Queries para Responsividad */
+@media screen and (max-width: 767px) {
+  .menu-option img {
+      max-width: 150px;
+  }
+
+  .menu-option h3 {
+      font-size: 18px;
+  }
+
+  .menu-option p {
+      font-size: 14px;
+  }
+
+  .menu-option a {
+      padding: 8px 16px;
+      font-size: 14px;
+  }
+}

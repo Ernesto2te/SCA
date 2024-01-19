@@ -1,0 +1,21 @@
+
+.page-body {
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.card {
+    border-radius: 14px;
+    background: #c9141400;
+    box-shadow: 5px 5px 10px #898989, -5px -5px 10px #ffffff;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    backdrop-filter: blur(10px);
+   
+}
+
+@media (max-width: 767px) {
+    .btn-agregar-alumno {
+      text-align: center;
+    }
+  }

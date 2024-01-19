@@ -1,0 +1,44 @@
+
+.page-body {
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.card {
+    border-radius: 14px;
+    background: #c9141400;
+    box-shadow: 5px 5px 10px #898989, -5px -5px 10px #ffffff;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    backdrop-filter: blur(10px);
+   
+}
+
+.bg-header {
+    background-color: #ed703b;
+    color: #02022a;
+    text-align: center;
+}
+
+
+/* Cambiar el color de las letras para los elementos que tengan la clase .letras-color */
+.letras-color {
+    color: #02022a; /* Reemplaza #FF0000 con el color que desees */
+}
+
+/* Cambiar el color de las letras para los elementos con la etiqueta <h2> */
+h2 {
+    color:  #02022a; /* Reemplaza #00FF00 con el color que desees */
+}
+
+/* Cambiar el color de las letras para los elementos con la clase .texto-destacado */
+.texto-destacado {
+    color:  #02022a; /* Reemplaza #0000FF con el color que desees */
+}
+p  {
+   color: #02022a;
+}
+
+label {
+    color: #02022a;
+ }

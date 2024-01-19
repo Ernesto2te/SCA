@@ -1,0 +1,304 @@
+
+.page-body {
+  background: rgb(242,252,255);
+  background: linear-gradient(90deg, rgba(242,252,255,1) 0%, rgba(235,254,255,1) 30%, rgba(232,255,235,1) 100%);
+}
+
+.page-body h3 {
+  color:#022831;
+}
+/* estilo encabezado tabla */
+         table.dataTable thead {
+          
+            background: #c2ff9cc3 ;
+            color:#02022a;
+            text-align: center;
+            
+        }
+        table.display thead th {
+  text-align: center; /* Alinea el texto al centro */
+}
+        table.dataTable{
+            /* background-color: rgb(255, 238, 228); */
+            backdrop-filter: blur(8px);
+           
+        }
+
+        
+        .card {
+          border-radius: 14px;
+         background: #0908081b; 
+          /* box-shadow: 5px 5px 10px #898989, -5px -5px 10px #ffffff; */
+          padding: 20px;
+          text-align: center;
+          position: relative;
+          /* backdrop-filter: blur(10px);  */
+        }
+        
+
+        @media (max-width: 767px) {
+          .card {
+            padding: 10px;
+          }
+        
+          .btn-agregar-alumno {
+            text-align: center;
+          }
+        }
+/* .page-body {
+  background: radial-gradient(circle at top right, #a7e38f 55%, transparent 50%) top right,
+              radial-gradient(circle at bottom left, #dfa46c 55%, transparent 50%) bottom left;
+  background-size: 50% 100%;
+  background-repeat: no-repeat;
+}
+
+/* Media query para dispositivos móviles */
+@media screen and (max-width: 768px) {
+  .page-body {
+    background-size: 100% 100%; /* Ajusta el tamaño verticalmente */
+    background-position: center; /* Centra el fondo */
+  }
+} 
+
+
+
+.container .text-centrado h3 {
+  margin-top: -120px;
+  margin-left: -700px;
+  color: #02022a;
+}
+
+.container .mb-4 {
+  margin-top: -300px;
+  margin-left: 600px;
+}
+
+.container .mb-6 {
+  margin-top: -300px;
+  margin-left: 600px;
+}
+
+.container .card-header {
+  /* margin-left: 600px; */
+}
+
+.select-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.select-wrapper b {
+  margin-right: 10px;
+  color: #02022a;
+}
+
+.card-body1 {
+  position: relative;
+  top: -200px;
+  margin-left: -25px;
+}
+
+/* Estilos para pantallas grandes */
+.sidebar-wrapper {
+  width: 250px;
+}
+
+/* Estilos para pantallas pequeñas */
+@media screen and (max-width: 768px) {
+  .sidebar-wrapper {
+    width: 100%;
+    position: absolute;
+    left: -100%;
+    transition: all 0.3s;
+  }
+
+  .sidebar-wrapper.responsive {
+    left: 0;
+  }
+}
+
+
+
+/* Estilo del periodo */
+.activo {
+  border: none; /* Quitar el borde */
+  background-color: lightgreen;
+  border-radius: 5px;
+  color: black; /* Color del texto */
+  font-weight: bold; /* Texto en negrita y grueso */
+  font-size: 16px; /* Tamaño del texto */
+}
+
+
+.inactivo {
+  border: 1px solid lightcoral;
+  background-color: lightcoral;
+  border-radius: 5px;
+  color: black; /* Color del texto */
+  font-weight: bold; /* Texto en negrita y grueso */
+  font-size: 16px; /* Tamaño del texto */
+
+} 
+
+.page-body-wrapper {
+  padding-top: 0;
+}
+
+.card-header h2 {
+  text-align: center;
+  margin-left: -30px;
+  color: #b12b09;
+}
+
+.card-header h5 {
+  text-align: center;
+  color: #02022a;
+}
+
+.btnAgregarP {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.modal-header {
+  background-color: #e6eeff;
+  color: #02022a;
+}
+
+.modal-header h4.modal-title {
+  font-weight: bold;
+  color: #02022a;
+}
+
+.modal-body .row.mb-3 {
+  margin-bottom: 20px;
+}
+
+.modal-body h4 span.badge {
+  
+  color: #02022a;
+}
+
+.modal-body input[type="text"],
+.modal-footer button {
+  color: #02022a;
+}
+
+.modal-footer button.btn-primary {
+  font-weight: bold;
+}
+
+.card-body {
+  padding: 0;
+}
+.card h2 {
+  color: #02022a; /* Cambia el color del texto del h2 dentro de la clase .card a rojo */
+}
+
+.card h5 {
+  color: #02022a; /* Cambia el color del texto del h5 dentro de la clase .card a azul */
+}
+.table-responsive {
+  padding: 10px;
+}
+h2{
+  color: #02022a;
+}
+h4 {
+  color: #02022a;
+
+}
+.card .page-title .col-sm-12 {
+  display: flex;
+  justify-content: center;
+}
+
+
+.btnAgregar {
+  width: 100%;
+  max-width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (max-width: 767px) {
+  .btn-agregar-alumno {
+    margin-bottom: 1rem;
+  }
+
+  .dataTables_filter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+
+  .dataTables_filter input[type="search"] {
+    width: auto;
+    margin-left: 1rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+
+#tabladocentes thead {
+  background: #ed703b;
+  color: #02022a;
+  text-align: center;
+}
+
+#tabladocentes thead th {
+  text-align: center;
+}
+
+#tabladocentes {
+  backdrop-filter: blur(8px);
+}
+
+
+
+body.page-docentes {
+  background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+/* .page-docentes .container {
+  background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.page-docentes .page-body {
+  background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+} */
+
+/* Estilos por defecto para los elementos del menú */
+.sidebar-list {
+  /* Agrega tus estilos comunes aquí */
+}
+
+/* Estilos cuando se pasa el cursor por encima del elemento del menú */
+.sidebar-list:hover {
+  background-color: #c2ff9cc3;  /* Cambia el color de fondo cuando se pasa el cursor */
+  color: #fff; /* Cambia el color del texto cuando se pasa el cursor */
+  
+}
+
+/* Agregar una transición suave */
+.sidebar-list {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+#conjuntoin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-box i {
+  color: #c2ff9cc3;
+}
+#sidebar-menu {
+  background-color:#022831;
+}
+
+.back-btn{
+  background-color:#022831;
+}
