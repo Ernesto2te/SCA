@@ -11,7 +11,7 @@ $result = "";
 
    }
    else{
-      require 'view/solicitud.php '; 
+      require 'view/solicitud.php'; 
    }
 
 
